@@ -8,7 +8,9 @@ def download_and_load_model():
     model_path = "model_epoch_94.h5"
 
     if not os.path.exists(model_path):
-        gdown.download(f"https://drive.google.com/file/d/1U_Il1ynl7R3kFtJjlotS4JXE-I5W3nZw/view?usp=sharing", model_path, quiet=False)
+        # Use only the file ID in the download URL
+        file_id = "1U_Il1ynl7R3kFtJjlotS4JXE-I5W3nZw"
+        gdown.download(f"https://drive.google.com/uc?id={file_id}", model_path, quiet=False)
 
     return tf.keras.models.load_model(model_path)
 
@@ -18,3 +20,4 @@ st.title("Model Deployment Example")
 if st.button("Load Model and Predict"):
     model = download_and_load_model()
     st.success("Model loaded!")
+
